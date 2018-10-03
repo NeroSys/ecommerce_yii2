@@ -8,6 +8,7 @@ use backend\models\ProductSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use common\models\Lang;
 
 /**
  * ProductController implements the CRUD actions for Product model.
@@ -66,13 +67,13 @@ class ProductController extends Controller
     {
         $model = new Product();
 
+        $langs = Lang::find()->all();
+
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
         }
 
-        return $this->render('create', [
-            'model' => $model,
-        ]);
+        return $this->render('create', compact('model', 'langs'));
     }
 
     /**
@@ -86,13 +87,20 @@ class ProductController extends Controller
     {
         $model = $this->findModel($id);
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+
+        $langs = Lang::find()->all();
+
+        if ($model->load(Yii::$app->request->post())) {
+
+            if ($model->sale == 1){
+                $model->new = 0;
+            }
+            $model->save();
+
             return $this->redirect(['view', 'id' => $model->id]);
         }
 
-        return $this->render('update', [
-            'model' => $model,
-        ]);
+        return $this->render('update',  compact('model', 'langs'));
     }
 
     /**

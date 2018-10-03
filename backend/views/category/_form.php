@@ -77,6 +77,7 @@ use common\models\Category;
         </div>
     </div>
 
+    <div class="clearfix"></div>
     <div class="form-group">
         <?= Html::submitButton('Сохранить', ['class' => 'btn btn-primary']) ?>
     </div>
