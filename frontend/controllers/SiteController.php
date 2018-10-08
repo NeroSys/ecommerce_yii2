@@ -1,6 +1,8 @@
 <?php
 namespace frontend\controllers;
 
+use common\models\Action;
+use common\models\Product;
 use Yii;
 use yii\base\InvalidParamException;
 use yii\web\BadRequestHttpException;
@@ -71,7 +73,22 @@ class SiteController extends AppController
      */
     public function actionIndex()
     {
-        return $this->render('index');
+        $actions = Action::find()->orderBy(['id' => SORT_DESC])->limit(3)->all();
+
+        $products = Product::find()->all();
+
+        $new = Product::find()->where(['new' => 1])->all();
+
+        $hits = Product::find()->where(['hit' => 1])->all();
+
+        $sales = Product::find()->where(['sale' => 1])->all();
+
+        return $this->render('index', compact(
+            'actions',
+            'products',
+            'hits',
+            'new',
+            'sales'));
     }
 
     /**

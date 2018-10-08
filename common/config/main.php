@@ -3,6 +3,8 @@ return [
     'aliases' => [
         '@bower' => '@vendor/bower-asset',
         '@npm'   => '@vendor/npm-asset',
+        '@cropp' => "http://site/upload",
+        '@site' => "http://site"
     ],
     'vendorPath' => dirname(dirname(__DIR__)) . '/vendor',
     'components' => [

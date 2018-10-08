@@ -4,6 +4,7 @@ namespace common\models;
 
 use Yii;
 use yii\db\ActiveRecord;
+use yii\helpers\Url;
 
 /**
  * This is the model class for table "{{%product}}".
@@ -24,7 +25,7 @@ use yii\db\ActiveRecord;
  *
  * @property ProductLang[] $productLangs
  */
-class Product extends \yii\db\ActiveRecord
+class Product extends ActiveRecord
 {
 
     public $title;
@@ -221,4 +222,48 @@ class Product extends \yii\db\ActiveRecord
         $this->viewed += 1;
         return $this->save(false);
     }
+
+    // image block--
+    public function getMainImage(){
+        return Url::toRoute('/../upload/product/'.$this->image, true);
+    }
+
+    public function getPreviewImage(){
+        return Url::toRoute('/../upload/product/'.$this->preview, true);
+    }
+
+    public function setMainImage($file){
+        $this->image = $file;
+    }
+
+    public function setPreviewImage($file){
+        $this->preview = $file;
+    }
+
+    public function beforeSave($insert)
+    {
+        if(!empty($this->image)){
+            $tmp = explode('/', $this->image);
+            $this->image = array_pop($tmp);
+        }
+
+        if(!empty($this->preview)){
+            $tmp = explode('/', $this->preview);
+            $this->preview = array_pop($tmp);
+        }
+
+        return parent::beforeSave($insert);
+    }
+
+    public function getMainImg(){
+
+        return ($this->image) ?  '/frontend/web/upload/product/'. $this->image : '/frontend/web/no-image.jpg';
+    }
+
+    public function getPreviewImg(){
+
+        return ($this->preview) ?  '/frontend/web/upload/product/'. $this->preview : '/frontend/web/no-image.jpg';
+    }
+
+// end of image block --
 }

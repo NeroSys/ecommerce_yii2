@@ -32,76 +32,87 @@ $this->title = $model->name;
         ]) ?>
     </p>
 
-    <div class="col-md-5 col-sm-5 col-xs-12">
+    <div class="col-md-4 col-sm-4 col-xs-12">
+        <img src="<?= $model->getMainImage() ?>" height="400">
+    </div>
+
+    <div class="col-md-8 col-sm-8 col-xs-12">
+
         <div class="x_panel">
             <div class="x_title">
-                <h2><i class="fa fa-bars"></i> Основная информация</h2>
+                <h2><i class="fa fa-bars"></i> <?= $model->name ?></small></h2>
                 <div class="clearfix"></div>
             </div>
             <div class="x_content">
-                <?= DetailView::widget([
-                    'model' => $model,
-                    'attributes' => [
-                        'id',
-                        [
-                            'attribute' => 'category_id',
-                            'value' => function($data){
-                                return $data->category->name;
-                            }
-                        ],
-                        'name',
-                        'slug',
+                <div class="" role="tabpanel" data-example-id="togglable-tabs">
+                    <ul id="myTab" class="nav nav-tabs bar_tabs" role="tablist">
+                        <li role="presentation" class="active"><a href="#tab_content1" id="home-tab" role="tab" data-toggle="tab" aria-expanded="true">Основная информация</a>
+                        </li>
+                        <li role="presentation" class=""><a href="#tab_content2" role="tab" id="profile-tab" data-toggle="tab" aria-expanded="false">Цены</a>
+                        </li>
+                        <li role="presentation" class=""><a href="#tab_content3" role="tab" id="profile-tab" data-toggle="tab" aria-expanded="false">Переводы</a>
+                        </li>
+                    </ul>
+                    <div id="myTabContent" class="tab-content">
+                        <div role="tabpanel" class="tab-pane fade active in" id="tab_content1" aria-labelledby="home-tab">
+
+                            <?= DetailView::widget([
+                                'model' => $model,
+                                'attributes' => [
+                                    'id',
+                                    [
+                                        'attribute' => 'category_id',
+                                        'value' => function($data){
+                                            return $data->category->name;
+                                        }
+                                    ],
+                                    'name',
+                                    'slug',
 //                        'image',
 //                        'preview',
-                        'visible:boolean',
-                        'sort',
-                        'viewed',
-                        'hit:boolean',
-                        'new:boolean',
-                        'sale:boolean',
-                        'created_at:date',
-                    ],
-                ]) ?>
+                                    'visible:boolean',
+                                    'sort',
+                                    'viewed',
+                                    'hit:boolean',
+                                    'new:boolean',
+                                    'sale:boolean',
+                                    'created_at:date',
+                                ],
+                            ]) ?>
+
+                        </div>
+                        <div role="tabpanel" class="tab-pane fade" id="tab_content2" aria-labelledby="profile-tab">
+
+                            <?= GridView::widget([
+                                'dataProvider' => new ActiveDataProvider(['query' => $model->getProductLangs()]),
+                                'layout' => "{items}\n{pager}",
+                                'columns' => [
+                                    'lang',
+                                    'price',
+                                    'old_price',
+                                    'currency'
+                                ],
+                            ]); ?>
+
+                        </div>
+                        <div role="tabpanel" class="tab-pane fade" id="tab_content3" aria-labelledby="profile-tab">
+
+                            <?= GridView::widget([
+                                'dataProvider' => new ActiveDataProvider(['query' => $model->getProductLangs()]),
+                                'layout' => "{items}\n{pager}",
+                                'columns' => [
+                                    'lang',
+                                    'title:ntext',
+                                    'description:html'
+                                ],
+                            ]); ?>
+
+                        </div>
+                    </div>
+                </div>
+
             </div>
         </div>
+
     </div>
-    <!--переводы контента-->
-    <div class="col-md-7 col-sm-7 col-xs-12">
-        <div class="x_panel">
-            <div class="x_title">
-                <h2><i class="fa fa-bars"></i> Цены</h2>
-                <div class="clearfix"></div>
-            </div>
-            <div class="x_content">
-                <?= GridView::widget([
-                    'dataProvider' => new ActiveDataProvider(['query' => $model->getProductLangs()]),
-                    'layout' => "{items}\n{pager}",
-                    'columns' => [
-                        'lang',
-                        'price',
-                        'old_price',
-                        'currency'
-                    ],
-                ]); ?>
-            </div>
-        </div>
-        <div class="x_panel">
-            <div class="x_title">
-                <h2><i class="fa fa-bars"></i> Переводы</h2>
-                <div class="clearfix"></div>
-            </div>
-            <div class="x_content">
-                <?= GridView::widget([
-                    'dataProvider' => new ActiveDataProvider(['query' => $model->getProductLangs()]),
-                    'layout' => "{items}\n{pager}",
-                    'columns' => [
-                        'lang',
-                        'title:ntext',
-                        'description:ntext'
-                    ],
-                ]); ?>
-            </div>
-        </div>
-    </div>
-    <div class="clearfix"></div>
 </div>

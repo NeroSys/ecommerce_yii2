@@ -14,35 +14,52 @@ $this->title = 'Товары';
 
     <h1><?= Html::encode($this->title) ?></h1>
     <?php Pjax::begin(); ?>
-    <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
+    <div class="col-lg-3">
+        <?php  echo $this->render('_search', ['model' => $searchModel]); ?>
+    </div>
+    <div class="col-lg-9">
+        <p>
+            <?= Html::a('Добавить позицию', ['create'], ['class' => 'btn btn-primary']) ?>
+            <?php echo Breadcrumbs::widget(['links' => [
+                $this->title
+            ]]); ?>
+        </p>
 
-    <p>
-        <?= Html::a('Добавить позицию', ['create'], ['class' => 'btn btn-primary']) ?>
-        <?php echo Breadcrumbs::widget(['links' => [
-            $this->title
-        ]]); ?>
-    </p>
+        <?= GridView::widget([
+            'dataProvider' => $dataProvider,
+            'filterModel' => $searchModel,
+            'columns' => [
+                [
+                    'attribute' => 'image',
+                    'format'=> 'html',
+                    'label' => 'Превью',
+                    'value' => function($data){
+                        return Html::img($data->getMainImage(), ['width' => 50]);
 
-    <?= GridView::widget([
-        'dataProvider' => $dataProvider,
-        'filterModel' => $searchModel,
-        'columns' => [
-            'preview',
+                    }
+                ],
 //            'id',
-            'category_id',
-            'name',
+                [
+                    'attribute' => 'category_id',
+                    'value' => function($data){
+                        return $data->category->name;
+                    }
+                ],
+                'name',
 //            'slug',
 //            'image',
 //            'visible',
 //            'sort',
-            'viewed',
-            'hit:boolean',
-            'new:boolean',
-            'sale:boolean',
-            'created_at:date',
+                'viewed',
+                'hit:boolean',
+                'new:boolean',
+                'sale:boolean',
+                'created_at:date',
 
-            ['class' => 'yii\grid\ActionColumn'],
-        ],
-    ]); ?>
+                ['class' => 'yii\grid\ActionColumn'],
+            ],
+        ]); ?>
+    </div>
     <?php Pjax::end(); ?>
+
 </div>

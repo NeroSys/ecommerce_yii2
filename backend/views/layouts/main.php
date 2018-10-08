@@ -77,8 +77,9 @@ $bundle = yiister\gentelella\assets\Asset::register($this);
                         \yiister\gentelella\widgets\Menu::widget(
                             [
                                 "items" => [
-                                    ["label" => "Категории", "url" => ["category/index"], "icon" => "files-o"],
-                                    ["label" => "Товары", "url" => ["product/index"], "icon" => "files-o"],
+                                    ["label" => "Категории", "url" => ["category/index"], "icon" => "tasks"],
+                                    ["label" => "Товары", "url" => ["product/index"], "icon" => "shopping-cart"],
+                                    ["label" => "Акции магазина", "url" => ["action/index"], "icon" => "bolt"],
                                     [
                                         "label" => "Мультиязычность",
                                         "icon" => "tags",
@@ -100,15 +101,6 @@ $bundle = yiister\gentelella\assets\Asset::register($this);
 
                 <!-- /menu footer buttons -->
                 <div class="sidebar-footer hidden-small">
-                    <a data-toggle="tooltip" data-placement="top" title="Settings">
-                        <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
-                    </a>
-                    <a data-toggle="tooltip" data-placement="top" title="FullScreen">
-                        <span class="glyphicon glyphicon-fullscreen" aria-hidden="true"></span>
-                    </a>
-                    <a data-toggle="tooltip" data-placement="top" title="Lock">
-                        <span class="glyphicon glyphicon-eye-close" aria-hidden="true"></span>
-                    </a>
                     <a href="<?= Url::to(['site/logout']) ?>" data-method="post" data-placement="top" title="Logout">
                         <span class="glyphicon glyphicon-off" aria-hidden="true"></span>
                     </a>

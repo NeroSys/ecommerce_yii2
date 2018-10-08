@@ -1,6 +1,9 @@
 <?php
 namespace backend\controllers;
 
+use common\models\Action;
+use common\models\Category;
+use common\models\Product;
 use Yii;
 use yii\web\Controller;
 use yii\filters\VerbFilter;
@@ -60,7 +63,11 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
-        return $this->render('index');
+        $products = Product::find()->all();
+        $actions= Action::find()->all();
+        $categories = Category::find()->all();
+
+        return $this->render('index', compact('products', 'actions', 'categories'));
     }
 
     /**

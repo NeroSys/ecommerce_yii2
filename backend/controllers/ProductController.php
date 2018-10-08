@@ -132,4 +132,15 @@ class ProductController extends Controller
 
         throw new NotFoundHttpException('The requested page does not exist.');
     }
+
+    public function actions()
+    {
+        return [
+            'uploadPhoto' => [
+                'class' => 'common\components\cropper\actions\UploadAction',
+                'url' => Yii::getAlias('@cropp').'/'.'product',
+                'path' => \Yii::getAlias('@frontend').'/web/upload/product',
+            ]
+        ];
+    }
 }

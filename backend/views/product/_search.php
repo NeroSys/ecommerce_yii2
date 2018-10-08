@@ -2,6 +2,8 @@
 
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
+use yii\helpers\ArrayHelper;
+use common\models\Category;
 
 /* @var $this yii\web\View */
 /* @var $model backend\models\ProductSearch */
@@ -20,13 +22,14 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'id') ?>
 
-    <?= $form->field($model, 'category_id') ?>
+    <?= $form->field($model, 'category_id')->dropDownList(ArrayHelper::map(Category::find()->asArray()->all(),'id', 'name'), ['prompt' => '']) ?>
+
 
     <?= $form->field($model, 'name') ?>
-
-    <?= $form->field($model, 'slug') ?>
-
-    <?= $form->field($model, 'image') ?>
+<!---->
+<!--    --><?//= $form->field($model, 'slug') ?>
+<!---->
+<!--    --><?//= $form->field($model, 'image') ?>
 
     <?php // echo $form->field($model, 'preview') ?>
 
@@ -45,8 +48,8 @@ use yii\widgets\ActiveForm;
     <?php // echo $form->field($model, 'created_at') ?>
 
     <div class="form-group">
-        <?= Html::submitButton('Search', ['class' => 'btn btn-primary']) ?>
-        <?= Html::resetButton('Reset', ['class' => 'btn btn-default']) ?>
+        <?= Html::submitButton('Искать', ['class' => 'btn btn-primary']) ?>
+        <?= Html::resetButton('Очистить', ['class' => 'btn btn-default']) ?>
     </div>
 
     <?php ActiveForm::end(); ?>
