@@ -146,6 +146,12 @@ class Product extends ActiveRecord
         return $data_lang;
     }
 
+    public function getSessionItems($lang){
+        $language = $lang;
+        $data_lang = $this->getProductLangs()->where(['lang'=>$language])->one();
+        return $data_lang;
+    }
+
     /*
      * Возвращает объект поста по его url
      */

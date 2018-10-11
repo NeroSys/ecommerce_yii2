@@ -31,45 +31,18 @@ use yii\helpers\Url;
                                         </form>
                                     </div>
                                 </li>
-                                <li class="cart-icon"> <a href="#"> <span> <small class="cart-notification">2</small> </span> </a>
-                                    <div class="cart-dropdown header-link-dropdown">
-                                        <ul class="cart-list link-dropdown-list">
-                                            <li> <a class="close-cart"><i class="fa fa-times-circle"></i></a>
-                                                <div class="media"> <a class="pull-left"> <img alt="Ambar" src="/frontend/web/images/1.jpg"></a>
-                                                    <div class="media-body"> <span><a>Black African Print Skirt</a></span>
-                                                        <p class="cart-price">$14.99</p>
-                                                        <div class="product-qty">
-                                                            <label>Qty:</label>
-                                                            <div class="custom-qty">
-                                                                <input type="text" name="qty" maxlength="8" value="1" title="Qty" class="input-text qty">
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </li>
-                                            <li> <a class="close-cart"><i class="fa fa-times-circle"></i></a>
-                                                <div class="media"> <a class="pull-left"> <img alt="Ambar" src="/frontend/web/images/2.jpg"></a>
-                                                    <div class="media-body"> <span><a>Black African Print Skirt</a></span>
-                                                        <p class="cart-price">$14.99</p>
-                                                        <div class="product-qty">
-                                                            <label>Qty:</label>
-                                                            <div class="custom-qty">
-                                                                <input type="text" name="qty" maxlength="8" value="1" title="Qty" class="input-text qty">
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </li>
-                                        </ul>
-                                        <p class="cart-sub-totle">
-                                            <span class="pull-left">Cart Subtotal</span>
-                                            <span class="pull-right">
-		                  		<strong class="price-box">$29.98</strong>
-		                  	</span>
-                                        </p>
-                                        <div class="clearfix"></div>
-                                        <div class="mt-20"> <a href="cart.html" class="btn-color btn">Cart</a> <a href="checkout.html" class="btn-color btn right-side">Checkout</a> </div>
-                                    </div>
+                                <li class="cart-icon">
+                                    <a href="#" onclick="return getCart()"> <span>
+                                            <small class="cart-notification">
+
+                                                <?php if (!empty($_SESSION['cart.qty'])){
+                                                    echo $_SESSION['cart.qty'];
+                                                }else{
+                                                    echo 0;
+                                                }?>
+                                            </small>
+                                        </span>
+                                    </a>
                                 </li>
                             </ul>
                         </div>
@@ -83,7 +56,7 @@ use yii\helpers\Url;
             <div class="header-inner">
                 <div class="navbar-header">
                     <button data-target=".navbar-collapse" data-toggle="collapse" class="navbar-toggle" type="button"><i class="fa fa-bars"></i></button>
-                    <a class="navbar-brand page-scroll" href="<?= Url::home() ?>"> <img alt="ambar" src="/frontend/web/images/logo.png"> </a> </div>
+                    <a class="navbar-brand page-scroll" href="<?= Url::to(['site/index']) ?>"> <img alt="ambar" src="/frontend/web/images/logo.png"> </a> </div>
                 <div class="right-side float-none-sm">
                     <div id="menu" class="navbar-collapse collapse left-side" >
                         <ul class="nav navbar-nav navbar-left">

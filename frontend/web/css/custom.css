@@ -3145,3 +3145,16 @@ ul.tagcloud li a:hover {
 	cursor: pointer;
 }
 /* Scroll-top Arrow CSS End */
+.cart{
+	height: 25px;
+	width: 30px;
+}
+
+.del-item{
+	cursor: pointer;
+}
+
+.rightimg  {
+	float: right; /* Выравнивание по правому краю  */
+	margin: 7px 0 7px 7px; /* Отступы вокруг картинки */
+}

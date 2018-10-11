@@ -12,7 +12,9 @@ $this->title = 'Товары';
 ?>
 <div class="product-index">
 
-    <h1><?= Html::encode($this->title) ?></h1>
+    <div class="col-lg-12">
+        <h1><?= Html::encode($this->title) ?></h1>
+    </div>
     <?php Pjax::begin(); ?>
     <div class="col-lg-3">
         <?php  echo $this->render('_search', ['model' => $searchModel]); ?>
@@ -24,6 +26,7 @@ $this->title = 'Товары';
                 $this->title
             ]]); ?>
         </p>
+
 
         <?= GridView::widget([
             'dataProvider' => $dataProvider,

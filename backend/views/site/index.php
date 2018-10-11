@@ -51,9 +51,11 @@ Yii::$app->language = 'ru';
     <div class="animated flipInY col-md-2 col-sm-4 col-xs-4 tile_stats_count">
         <div class="left"></div>
         <div class="right">
-            <span class="count_top"><i class="fa fa-users"></i> Подписчики</span>
-            <div class="count">2,315</div>
-            <span class="count_bottom"><i class="green"><i class="fa fa-sort-asc"></i>34% </i> From last Week</span>
+            <a href="<?= Url::to(['subscribe/index']) ?>">
+                <span class="count_top"><i class="fa fa-users"></i> Подписчики</span>
+                <div class="count"><?= count($subscribers) ?></div>
+                <span class="count_bottom">Перейти к списку</span>
+            </a>
         </div>
     </div>
     <div class="animated flipInY col-md-2 col-sm-4 col-xs-4 tile_stats_count">

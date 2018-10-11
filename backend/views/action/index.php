@@ -13,7 +13,9 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="action-index">
 
-    <h1><?= Html::encode($this->title) ?></h1>
+    <div class="col-lg-12">
+        <h1><?= Html::encode($this->title) ?></h1>
+    </div>
 
     <p>
         <?= Html::a('Добавить позицию', ['create'], ['class' => 'btn btn-primary']) ?>

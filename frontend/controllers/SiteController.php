@@ -3,6 +3,7 @@ namespace frontend\controllers;
 
 use common\models\Action;
 use common\models\Product;
+use common\models\ProductLang;
 use Yii;
 use yii\base\InvalidParamException;
 use yii\web\BadRequestHttpException;
@@ -13,6 +14,8 @@ use frontend\models\PasswordResetRequestForm;
 use frontend\models\ResetPasswordForm;
 use frontend\models\SignupForm;
 use frontend\models\ContactForm;
+use yii\helpers\ArrayHelper;
+use yii\data\Pagination;
 
 /**
  * Site controller
@@ -231,6 +234,24 @@ class SiteController extends AppController
 
     public function actionSearch($q)
     {
-        return $this->render('search', compact('q'));
+
+        $request = ArrayHelper::getColumn(ProductLang::find()
+            ->where(['like', 'title', $q])
+            ->orWhere(['like', 'description', $q])
+            ->orWhere(['like', 'text', $q])
+            ->orWhere(['like', 'description', $q])
+            ->all(), 'item_id');
+
+        $query = Product::find()->where(['id' => $request]);
+
+        $countQuery = clone $query;
+        $pages = new Pagination(['totalCount' => $countQuery->count(), 'defaultPageSize' => 6, 'forcePageParam' => false]);
+        $products = $query->offset($pages->offset)
+            ->limit($pages->limit)
+            ->all();
+
+        $hits = Product::find()->where(['hit' => 1])->limit(6)->all();
+
+        return $this->render('search', compact('q', 'products', 'pages', 'hits'));
     }
 }

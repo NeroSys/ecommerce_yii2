@@ -46,6 +46,7 @@ return [
 //['class' => 'frontend\components\ClassUrlRule'],
                 '' => 'site/index',
                 '<controller:(category)>/<slug>'=>'<controller>/index',
+                '<controller:(product)>/<slug>'=>'<controller>/view',
                 '<controller:\w+>/<action:\w+>/' =>
                     '<controller>/<action>',
             ],

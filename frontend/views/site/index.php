@@ -78,9 +78,12 @@ $this->title = 'My';
                                                         <div class="detail-inner-left left-side">
                                                             <ul>
                                                                 <li class="pro-cart-icon">
-                                                                    <form>
+                                                                    <form class="add-to-cart" data-id="<?= $product->id ?>">
                                                                         <button title="<?= Yii::t('site', 'Add to Cart')?>"></button>
                                                                     </form>
+<!--                                                                    <a href="--><?//= Url::to(['cart/add', 'id' => $product->id])?><!--" class="add-to-cart" data-id="--><?//= $product->id ?><!--">-->
+<!--                                                                        <button title="--><?//= Yii::t('site', 'Add to Cart')?><!--"></button>-->
+<!--                                                                    </a>-->
                                                                 </li>
                                                             </ul>
                                                         </div>
@@ -125,7 +128,7 @@ $this->title = 'My';
                                                     <div class="detail-inner-left left-side">
                                                         <ul>
                                                             <li class="pro-cart-icon">
-                                                                <form>
+                                                                <form class="add-to-cart" data-id="<?= $item->id ?>">
                                                                     <button title="<?= Yii::t('site', 'Add to Cart')?>"></button>
                                                                 </form>
                                                             </li>
@@ -176,7 +179,7 @@ $this->title = 'My';
                                                 <div class="detail-inner-left left-side">
                                                     <ul>
                                                         <li class="pro-cart-icon">
-                                                            <form>
+                                                            <form class="add-to-cart" data-id="<?= $hit->id ?>">
                                                                 <button title="<?= Yii::t('site', 'Add to Cart')?>"></button>
                                                             </form>
                                                         </li>
@@ -242,7 +245,7 @@ $this->title = 'My';
                                             <div class="detail-inner-left left-side">
                                                 <ul>
                                                     <li class="pro-cart-icon">
-                                                        <form>
+                                                        <form class="add-to-cart" data-id="<?= $sale->id ?>">
                                                             <button title="<?= Yii::t('site', 'Add to Cart')?>"></button>
                                                         </form>
                                                     </li>
