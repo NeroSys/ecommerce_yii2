@@ -5,6 +5,7 @@ use common\models\Action;
 use common\models\Category;
 use common\models\Product;
 use common\models\Subscribe;
+use common\models\Order;
 use Yii;
 use yii\web\Controller;
 use yii\filters\VerbFilter;
@@ -68,12 +69,14 @@ class SiteController extends Controller
         $actions= Action::find()->all();
         $categories = Category::find()->all();
         $subscribers = Subscribe::find()->all();
+        $orders = Order::find()->orderBy(['created_at' => SORT_DESC])->all();
 
         return $this->render('index', compact(
             'products',
             'actions',
             'categories',
-            'subscribers'
+            'subscribers',
+            'orders'
         ));
     }
 

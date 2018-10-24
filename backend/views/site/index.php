@@ -61,9 +61,11 @@ Yii::$app->language = 'ru';
     <div class="animated flipInY col-md-2 col-sm-4 col-xs-4 tile_stats_count">
         <div class="left"></div>
         <div class="right">
+          <a href="<?= Url::to(['order/index']) ?>">
             <span class="count_top"><i class="fa fa-user"></i> Заказы</span>
-            <div class="count">25</div>
+            <div class="count"><?= count($orders) ?></div>
             <span class="count_bottom">Открыть список</span>
+          </a>
         </div>
     </div>
 
@@ -84,16 +86,14 @@ Yii::$app->language = 'ru';
                 <table class="table table-striped responsive-utilities jambo_table bulk_action">
                     <thead>
                     <tr class="headings">
-                        <th>
-                            <input type="checkbox" id="check-all" class="flat">
-                        </th>
-                        <th class="column-title">Invoice </th>
-                        <th class="column-title">Invoice Date </th>
-                        <th class="column-title">Order </th>
-                        <th class="column-title">Bill to Name </th>
-                        <th class="column-title">Status </th>
-                        <th class="column-title">Amount </th>
-                        <th class="column-title no-link last"><span class="nobr">Action</span>
+
+                        <th class="column-title"># Заказа </th>
+                        <th class="column-title">Сумма </th>
+                        <th class="column-title">Дата </th>
+                        <th class="column-title">Покупатель </th>
+                        <th class="column-title">Email </th>
+                        <th class="column-title">Статус </th>
+                        <th class="column-title no-link last"><span class="nobr">Новый</span>
                         </th>
                         <th class="bulk-actions" colspan="7">
                             <a class="antoo" style="color:#fff; font-weight:500;">Bulk Actions ( <span class="action-cnt"> </span> ) <i class="fa fa-chevron-down"></i></a>
@@ -102,33 +102,45 @@ Yii::$app->language = 'ru';
                     </thead>
 
                     <tbody>
-                    <tr class="even pointer">
-                        <td class="a-center ">
-                            <input type="checkbox" class="flat" name="table_records">
-                        </td>
-                        <td class=" ">121000040</td>
-                        <td class=" ">May 23, 2014 11:47:56 PM </td>
-                        <td class=" ">121000210 <i class="success fa fa-long-arrow-up"></i></td>
-                        <td class=" ">John Blank L</td>
-                        <td class=" ">Paid</td>
-                        <td class="a-right a-right ">$7.45</td>
-                        <td class=" last"><a href="#">View</a>
-                        </td>
-                    </tr>
-                    <tr class="odd pointer">
-                        <td class="a-center ">
-                            <input type="checkbox" class="flat" name="table_records">
-                        </td>
-                        <td class=" ">121000039</td>
-                        <td class=" ">May 23, 2014 11:30:12 PM</td>
-                        <td class=" ">121000208 <i class="success fa fa-long-arrow-up"></i>
-                        </td>
-                        <td class=" ">John Blank L</td>
-                        <td class=" ">Paid</td>
-                        <td class="a-right a-right ">$741.20</td>
-                        <td class=" last"><a href="#">View</a>
-                        </td>
-                    </tr>
+                      <?php foreach ($orders as $order) {?>
+                        <tr class="even pointer">
+                            <td class=" ">
+                              <a href="<?= Url::to(['order/view', 'id' => $order->id]) ?>">
+                                <?= $order->id ?>
+                              </a>
+                            </td>
+                            <td class=" ">
+                              <a href="<?= Url::to(['order/view', 'id' => $order->id]) ?>">
+                                <?= $order->sum ?> <i class="success fa fa-long-arrow-up"></i>
+                              </a>
+                            </td>
+                            <td class=" ">
+                              <a href="<?= Url::to(['order/view', 'id' => $order->id]) ?>">
+                                <?= $order->created_at ?>
+                              </a>
+                            </td>
+                            <td class=" ">
+                              <a href="<?= Url::to(['order/view', 'id' => $order->id]) ?>">
+                                <?= $order->name ?>
+                              </a>
+                            </td>
+                            <td class=" ">
+                              <a href="<?= Url::to(['order/view', 'id' => $order->id]) ?>">
+                                <?= $order->email ?>
+                              </a>
+                            </td>
+                            <td class="a-right a-right ">
+                              <a href="<?= Url::to(['order/view', 'id' => $order->id]) ?>">
+                                <?= $order->status ?>
+                              </a>
+                            </td>
+                            <td class=" last">
+                              <a href="<?= Url::to(['order/view', 'id' => $order->id]) ?>">
+                                <?= $order->viewed ?>
+                              </a>
+                            </td>
+                        </tr>
+                      <?}?>
                     </tbody>
 
                 </table>
@@ -184,4 +196,3 @@ Yii::$app->language = 'ru';
         </div>
     </div>
 </div>
-

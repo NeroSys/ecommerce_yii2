@@ -10,6 +10,7 @@ namespace frontend\models;
 
 use yii\db\ActiveRecord;
 
+
 class Cart extends ActiveRecord
 {
 
@@ -33,6 +34,7 @@ class Cart extends ActiveRecord
                 'currency' => $lang_product['currency'],
                 'img' => $product->image,
                 'slug' => $product->slug,
+
             ];
         }
 

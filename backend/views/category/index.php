@@ -32,6 +32,7 @@ $this->title = 'Категории';
             'filterModel' => $searchModel,
             'columns' => [
                 'id',
+                'category_id',
                 'name',
                 'slug',
                 'visible:boolean',

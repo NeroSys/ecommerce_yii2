@@ -43,6 +43,7 @@ $this->title = $model->name;
                     'model' => $model,
                     'attributes' => [
                         'id',
+                        'category_id',
                         'name',
                         'slug',
                         'visible:boolean',

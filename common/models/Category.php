@@ -8,6 +8,7 @@ use Yii;
  * This is the model class for table "category".
  *
  * @property int $id
+ * @property int $category_id
  * @property string $name
  * @property string $slug
  * @property int $visible
@@ -46,7 +47,7 @@ class Category extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['visible', 'sort'], 'integer'],
+            [['visible', 'sort', 'category_id'], 'integer'],
             [[
                 'title',
                 'titleNew',], 'safe'],
@@ -141,5 +142,10 @@ class Category extends \yii\db\ActiveRecord
     public static function getValue($id, $langId){
 
         return CategoryLang::find()->where(['item_id' => $id])->andWhere(['lang_id' => $langId])->one();
+    }
+
+    public function getChild($id){
+
+        return Category::find()->where(['category_id' => $id])->all();
     }
 }

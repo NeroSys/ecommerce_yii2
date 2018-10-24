@@ -55,15 +55,6 @@ $bundle = yiister\gentelella\assets\Asset::register($this);
                 </div>
                 <div class="clearfix"></div>
 
-                <!-- menu prile quick info -->
-                <div class="profile">
-                    <div class="profile_pic">
-                        <img src="http://placehold.it/128x128" alt="..." class="img-circle profile_img">
-                    </div>
-                    <div class="profile_info">
-                        <h2><?= \Yii::$app->user->identity->username; ?></h2>
-                    </div>
-                </div>
                 <!-- /menu prile quick info -->
 
                 <br />
@@ -72,11 +63,12 @@ $bundle = yiister\gentelella\assets\Asset::register($this);
                 <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
 
                     <div class="menu_section">
-                     
+
                         <?=
                         \yiister\gentelella\widgets\Menu::widget(
                             [
                                 "items" => [
+                                    ["label" => "Заказы", "url" => ["order/index"], "icon" => "dollar"],
                                     ["label" => "Категории", "url" => ["category/index"], "icon" => "tasks"],
                                     ["label" => "Товары", "url" => ["product/index"], "icon" => "shopping-cart"],
                                     ["label" => "Акции магазина", "url" => ["action/index"], "icon" => "bolt"],

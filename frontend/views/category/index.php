@@ -3,6 +3,7 @@ use yii\widgets\Breadcrumbs;
 use frontend\widgets\MenuSidebarWidget;
 use yii\helpers\Url;
 use yii\widgets\LinkPager;
+use frontend\widgets\MenuWidget;
 
 $lang_category = $model->getDataItems();
 
@@ -41,7 +42,7 @@ $this->title = $lang_category['title'];
                         <div class="sidebar-title">
                             <h3><?= Yii::t('site', 'Categories') ?></h3>
                         </div>
-                        <?= MenuSidebarWidget::widget()?>
+                        <?= MenuWidget::widget(['tpl' => 'sidebar']) ?>
                     </div>
                     <div class="sidebar-box mb-40 visible-sm visible-md visible-lg"> <a href="#"> <img src="/frontend/web/images/homka.jpeg" alt="ambar"> </a> </div>
                     <div class="sidebar-box sidebar-item"> <span class="opener plus"></span>

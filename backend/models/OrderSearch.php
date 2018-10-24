@@ -5,12 +5,12 @@ namespace backend\models;
 use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use common\models\Category;
+use common\models\Order;
 
 /**
- * CategorySearch represents the model behind the search form of `common\models\Category`.
+ * OrderSearch represents the model behind the search form of `common\models\Order`.
  */
-class CategorySearch extends Category
+class OrderSearch extends Order
 {
     /**
      * {@inheritdoc}
@@ -18,8 +18,9 @@ class CategorySearch extends Category
     public function rules()
     {
         return [
-            [['id', 'visible', 'sort', 'category_id'], 'integer'],
-            [['name', 'slug'], 'safe'],
+            [['id', 'qty', 'status', 'viewed'], 'integer'],
+            [['created_at', 'updated_at', 'name', 'email', 'phone'], 'safe'],
+            [['sum'], 'number'],
         ];
     }
 
@@ -41,7 +42,7 @@ class CategorySearch extends Category
      */
     public function search($params)
     {
-        $query = Category::find();
+        $query = Order::find();
 
         // add conditions that should always apply here
 
@@ -60,13 +61,17 @@ class CategorySearch extends Category
         // grid filtering conditions
         $query->andFilterWhere([
             'id' => $this->id,
-            'category_id' => $this->category_id,
-            'visible' => $this->visible,
-            'sort' => $this->sort,
+            'created_at' => $this->created_at,
+            'updated_at' => $this->updated_at,
+            'qty' => $this->qty,
+            'sum' => $this->sum,
+            'status' => $this->status,
+            'viewed' => $this->viewed,
         ]);
 
         $query->andFilterWhere(['like', 'name', $this->name])
-            ->andFilterWhere(['like', 'slug', $this->slug]);
+            ->andFilterWhere(['like', 'email', $this->email])
+            ->andFilterWhere(['like', 'phone', $this->phone]);
 
         return $dataProvider;
     }

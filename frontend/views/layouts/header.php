@@ -1,7 +1,7 @@
 <?php
 use frontend\widgets\LangWidget;
-use frontend\widgets\MenuHeaderWidget;
 use yii\helpers\Url;
+use frontend\widgets\MenuWidget;
 ?>
 
 <!-- HEADER START -->
@@ -56,11 +56,11 @@ use yii\helpers\Url;
             <div class="header-inner">
                 <div class="navbar-header">
                     <button data-target=".navbar-collapse" data-toggle="collapse" class="navbar-toggle" type="button"><i class="fa fa-bars"></i></button>
-                    <a class="navbar-brand page-scroll" href="<?= Url::to(['site/index']) ?>"> <img alt="ambar" src="/frontend/web/images/logo.png"> </a> </div>
+                    <a class="navbar-brand page-scroll" href="<?= Url::to(['site/index']) ?>"> <img alt="ambar" src="/frontend/web/images/galina.png"> </a> </div>
                 <div class="right-side float-none-sm">
                     <div id="menu" class="navbar-collapse collapse left-side" >
                         <ul class="nav navbar-nav navbar-left">
-                            <?= MenuHeaderWidget::widget(); ?>
+                            <?= MenuWidget::widget(['tpl' => 'header']) ?>
                         </ul>
                     </div>
                 </div>

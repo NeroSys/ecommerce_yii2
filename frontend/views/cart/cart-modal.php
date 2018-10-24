@@ -27,11 +27,11 @@ use yii\helpers\Url;
                 </tr>
             <?php endforeach?>
                 <tr>
-                    <td colspan="4">Итого: </td>
+                    <td colspan="4"><?= Yii::t('site', 'Итого: ') ?></td>
                     <td><?= $session['cart.qty']?></td>
                 </tr>
                 <tr>
-                    <td colspan="4">На сумму: </td>
+                    <td colspan="4"><?= Yii::t('site', 'На сумму: ') ?></td>
                     <td>----<?= $session['cart.sum']?>----</td>
                 </tr>
             </tbody>
@@ -39,7 +39,7 @@ use yii\helpers\Url;
     </div>
 <?php else: ?>
 
-    <h3 align="center"><img src="/frontend/web/images/11.jpg" class="rightimg">Корзина пуста</h3>
+    <h3 align="center"><img src="/frontend/web/images/11.jpg" class="rightimg"><?= Yii::t('site', 'Корзина пуста') ?></h3>
     <div class="clearfix"></div>
 <?php endif;?>
 

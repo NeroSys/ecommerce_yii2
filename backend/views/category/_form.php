@@ -20,6 +20,9 @@ use common\models\Category;
                 <div class="clearfix"></div>
             </div>
             <div class="x_content">
+
+                <?= $form->field($model, 'category_id')->textInput(['maxlength' => true]) ?>
+
                 <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
 
                 <?php if (!$model->isNewRecord){?>

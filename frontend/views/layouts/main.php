@@ -4,6 +4,7 @@
 /* @var $content string */
 
 use yii\helpers\Html;
+use yii\helpers\Url;
 use frontend\assets\AppAsset;
 use yii\bootstrap\Modal;
 
@@ -43,7 +44,7 @@ AppAsset::register($this);
         'size' => 'modal-lg',
         'id' => 'cart',
         'footer' => '<button type="button" class="btn btn-default" data-dismiss="modal">Продолжить покупки</button>
-            <button type="button" class="btn btn-warning">Оформить заказ</button>
+            <a href="'. Url::to(['cart/view']) .'" type="button" class="btn btn-warning">Оформить заказ</a>
             <button type="button" class="btn btn-danger" onclick="clearCart()">Очистить корзину</button>'
     ]); ?>
 
