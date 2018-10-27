@@ -9,6 +9,7 @@
 namespace frontend\controllers;
 
 use common\models\Product;
+use common\models\Sales;
 use frontend\models\Cart;
 use common\models\Order;
 use common\models\OrderItems;
@@ -74,8 +75,10 @@ class CartController extends AppController
         if ($order->load(Yii::$app->request->post())){
             $order->qty = $session['cart.qty'];
             $order->sum = $session['cart.sum'];
+            $order->currency = $session['currency'];
             if($order->save()){
                 $this->saveOrderItems($session['cart'], $order->id);
+                $this->saveSales($session, $order->id, $order->manager_discount);
                 Yii::$app->session->setFlash('success', 'Ваш заказ принят. Менеджер вскоре свяжется с Вами.');
                 $session->remove('cart');
                 $session->remove('cart.qty');
@@ -85,6 +88,8 @@ class CartController extends AppController
                 Yii::$app->session->setFlash('error', 'Ошибка оформления заказа');
             }
         }
+
+
 
         return $this->render('view', compact('session', 'order'));
     }
@@ -103,5 +108,14 @@ class CartController extends AppController
         }
     }
 
+    protected function saveSales($session, $order_id, $manager){
+
+        $sales = new Sales();
+        $sales->order_id = $order_id;
+        $sales->currency = $session['currency'];
+        $sales->sum= $session['cart.sum'];
+        $sales->manager_discount = $manager;
+        $sales->save();
+    }
 
 }

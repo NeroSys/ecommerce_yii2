@@ -93,6 +93,7 @@ $this->title = Yii::t('site', 'Оформление заказа');
                                 <?= $form->field($order, 'name')?>
                                 <?= $form->field($order, 'email')?>
                                 <?= $form->field($order, 'phone')?>
+                                <?= $form->field($order, 'manager_discount')?>
                                 <?= Html::submitButton(Yii::t('site', 'Заказать'), ['class' => 'btn-lg btn-warning']) ?>
                                 <?php ActiveForm::end() ?>
 

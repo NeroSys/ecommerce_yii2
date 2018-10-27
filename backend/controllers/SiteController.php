@@ -4,6 +4,7 @@ namespace backend\controllers;
 use common\models\Action;
 use common\models\Category;
 use common\models\Product;
+use common\models\Sales;
 use common\models\Subscribe;
 use common\models\Order;
 use Yii;
@@ -70,13 +71,15 @@ class SiteController extends Controller
         $categories = Category::find()->all();
         $subscribers = Subscribe::find()->all();
         $orders = Order::find()->orderBy(['created_at' => SORT_DESC])->all();
+        $sales = Sales::find()->orderBy(['date' => SORT_DESC])->all();
 
         return $this->render('index', compact(
             'products',
             'actions',
             'categories',
             'subscribers',
-            'orders'
+            'orders',
+            'sales'
         ));
     }
 

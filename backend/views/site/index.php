@@ -34,8 +34,8 @@ Yii::$app->language = 'ru';
         <div class="left"></div>
         <div class="right">
             <span class="count_top"><i class="fa fa-usd"></i> Продажи</span>
-            <div class="count green">2,500</div>
-            <span class="count_bottom"><i class="green"><i class="fa fa-sort-asc"></i>34% </i> From last Week</span>
+            <div class="count green"><?= count($sales) ?></div>
+            <span class="count_bottom"><i class="green"></i> количество продаж</span>
         </div>
     </div>
     <div class="animated flipInY col-md-2 col-sm-4 col-xs-4 tile_stats_count">
@@ -131,12 +131,20 @@ Yii::$app->language = 'ru';
                             </td>
                             <td class="a-right a-right ">
                               <a href="<?= Url::to(['order/view', 'id' => $order->id]) ?>">
-                                <?= $order->status ?>
+                                  <?php if(!$order->status){
+                                      echo "<span class=\"text-danger\">Активен</span>";
+                                  }else{
+                                      echo "<span class=\"text-success\">Выполнен</span>";
+                                  } ?>               <?= $order->status ?>
                               </a>
                             </td>
                             <td class=" last">
                               <a href="<?= Url::to(['order/view', 'id' => $order->id]) ?>">
-                                <?= $order->viewed ?>
+                                  <?php if(!$order->viewed){
+                                      echo "<span class=\"text-danger\">Не просмотрен</span>";
+                                  }else{
+                                      echo "<span class=\"text-success\">Просмотрен</span>";
+                                  } ?>
                               </a>
                             </td>
                         </tr>

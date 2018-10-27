@@ -15,11 +15,13 @@ use yii\db\Expression;
  * @property string $updated_at
  * @property int $qty
  * @property double $sum
+ * @property string $currency
  * @property int $status
  * @property string $name
  * @property string $email
  * @property string $phone
  * @property int $viewed
+ * @property string $manager_discount
  *
  * @property OrderItems[] $orderItems
  */
@@ -57,7 +59,8 @@ class Order extends ActiveRecord
             [['created_at', 'updated_at'], 'safe'],
             [['qty', 'status', 'viewed'], 'integer'],
             [['sum'], 'number'],
-            [['name', 'email', 'phone'], 'string', 'max' => 255],
+            [['name', 'email', 'phone', 'manager_discount'], 'string', 'max' => 255],
+            [['name', 'email', 'phone'], 'required' ]
         ];
     }
 
@@ -77,6 +80,7 @@ class Order extends ActiveRecord
             'email' => 'Email',
             'phone' => 'Телефон',
             'viewed' => 'Просмотрен',
+            'manager_discount' => 'Купон на скидку*'
         ];
     }
 
@@ -86,5 +90,10 @@ class Order extends ActiveRecord
     public function getOrderItems()
     {
         return $this->hasMany(OrderItems::className(), ['item_id' => 'id']);
+    }
+
+    public function getManager()
+    {
+        return $this->hasOne(Manager::className(), ['discount' => 'manager_discount']);
     }
 }

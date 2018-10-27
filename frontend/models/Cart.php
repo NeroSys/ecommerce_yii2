@@ -42,6 +42,7 @@ class Cart extends ActiveRecord
 
         $_SESSION['cart.sum'] = isset($_SESSION['cart.sum']) ? $_SESSION['cart.sum'] + $qty*$lang_product['price'] : $qty*$lang_product['price'];
 
+        $_SESSION['currency'] = $lang_product['currency'];
 
     }
 

@@ -72,6 +72,8 @@ $bundle = yiister\gentelella\assets\Asset::register($this);
                                     ["label" => "Категории", "url" => ["category/index"], "icon" => "tasks"],
                                     ["label" => "Товары", "url" => ["product/index"], "icon" => "shopping-cart"],
                                     ["label" => "Акции магазина", "url" => ["action/index"], "icon" => "bolt"],
+                                    ["label" => "Продажи", "url" => ["sales/index"], "icon" => "usd"],
+                                    ["label" => "Менеджеры", "url" => ["manager/index"], "icon" => "users"],
                                     [
                                         "label" => "Мультиязычность",
                                         "icon" => "tags",

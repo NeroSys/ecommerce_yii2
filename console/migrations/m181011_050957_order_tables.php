@@ -37,6 +37,7 @@ class m181011_050957_order_tables extends Migration
             'updated_at' => $this->dateTime(),
             'qty' => $this->integer(10),
             'sum' => $this->float(),
+            'currency' => $this->string(255),
             'status' => $this->smallInteger(1)->notNull()->defaultValue('0'),
             'name' => $this->string(255),
             'email' => $this->string(255),
